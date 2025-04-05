@@ -375,16 +375,13 @@ template<class Key, class Value>
 BinarySearchTree<Key, Value>::BinarySearchTree() 
 {
     // TODO
-    root_ = NULL;
-}
+    root_ = NULL;}
 
 template<typename Key, typename Value>
 BinarySearchTree<Key, Value>::~BinarySearchTree()
 {
     // TODO
-    clear();
-
-}
+    clear();}
 
 /**
  * Returns true if tree is empty
@@ -475,12 +472,11 @@ while (current != NULL) {
     parent = current;
     if (keyValuePair.first == current->getKey()) {
         current->setValue(keyValuePair.second);
-        return;
+ return;
     } else if (keyValuePair.first < current->getKey()) {
-        current = current->getLeft();
+   current = current->getLeft();
     } else {
-        current = current->getRight();
-    }
+        current = current->getRight();}
 }
 if (keyValuePair.first < parent->getKey()) {
     parent->setLeft(new Node<Key, Value>(keyValuePair.first, keyValuePair.second, parent));
@@ -501,8 +497,8 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
     Node<Key, Value>* toRemove = internalFind(key);
 if (toRemove == NULL) return;
 if (toRemove->getLeft() != NULL && toRemove->getRight() != NULL) {
-    Node<Key, Value>* pred = predecessor(toRemove);
-    nodeSwap(toRemove, pred);
+Node<Key, Value>* pred = predecessor(toRemove);
+ nodeSwap(toRemove, pred);
 }
 Node<Key, Value>* child = (toRemove->getLeft() != NULL) ? toRemove->getLeft() : toRemove->getRight();
 if (child != NULL) {
