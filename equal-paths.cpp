@@ -4,7 +4,6 @@
 #endif
 
 #include "equal-paths.h"
-#include <iostream>
 using namespace std;
 
 
