@@ -208,15 +208,19 @@ void AVLTree<Key, Value>::remove(const Key& key)
     AVLNode<Key, Value>* child = (nodeToRemove->getLeft() != nullptr) ? 
                                 nodeToRemove->getLeft() : nodeToRemove->getRight();
 
+ if (parent == nullptr) {
+    this->root_ = child;
     if (child != nullptr) {
-     child->setParent(parent);}
-
-    if (parent == nullptr) {
-        this->root_ = child;
-    } else if (parent->getLeft() == nodeToRemove) {
-        parent->setLeft(child);
-    } else {
+        child->setParent(nullptr);
+    }
+} else {
+    if (parent->getLeft() == nodeToRemove) {
+        parent->setLeft(child);} 
+        else {
         parent->setRight(child);}
+    if (child != nullptr) {
+        child->setParent(parent); }
+}
 
     // Update heights and balance factors, then rebalance if needed
     if (parent != nullptr) { adjustAfterRemove(parent); }
