@@ -12,7 +12,12 @@ int getlength( Node* root){
   if (root == nullptr){
     return 0; }
   // how long it is
-  return 1 + max(getlength(root->left),  getlength(root->right) );}
+  if (getlength(root->left) > getlength(root->right) ){
+    return 1 + getlength(root->left);}
+  else { return 1 + getlength(root->right); }
+  }
+
+  // return 1 + max(getlength(root->left),  getlength(root->right) );}
 
 
 bool equalPaths(Node * root)
