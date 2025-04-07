@@ -305,49 +305,50 @@ void AVLTree<Key, Value>::rotateLeft(AVLNode<Key, Value>* node)
 {
     AVLNode<Key, Value>* newRoot = node->getRight();
     AVLNode<Key, Value>* parent = node->getParent();
-    
+
     node->setRight(newRoot->getLeft());
     if (newRoot->getLeft() != nullptr) {
-        newRoot->getLeft()->setParent(node);
-    }
-    
+        newRoot->getLeft()->setParent(node); }
     newRoot->setLeft(node);
     node->setParent(newRoot);
-    
-    if (parent == nullptr) {
-        this->root_ = newRoot;} 
-        else if (parent->getLeft() == node) {
-        parent->setLeft(newRoot);
-    } else {
-        parent->setRight(newRoot);}
-    newRoot->setParent(parent);
-    
-    // Update heiht and balance factors
-    updateNodeHeight(node);
-    updateNodeHeight(newRoot);
-}
 
-template<class Key, class Value>
-void AVLTree<Key, Value>::rotateRight(AVLNode<Key, Value>* node)
-{
-    AVLNode<Key, Value>* newRoot = node->getLeft();
-AVLNode<Key, Value>* parent = node->getParent();
-    
-    node->setLeft(newRoot->getRight());
-    if (newRoot->getRight() != nullptr) { newRoot->getRight()->setParent(node); }
-    
-    newRoot->setRight(node);
- node->setParent(newRoot);
-    
+    newRoot->setParent(parent);
     if (parent == nullptr) {
         this->root_ = newRoot;
     } else if (parent->getLeft() == node) {
         parent->setLeft(newRoot);} 
-else { parent->setRight(newRoot); }
-newRoot->setParent(parent);
-    
-    // Update heihts and balance factors
-    updateNodeHeight(node);
-    updateNodeHeight(newRoot);}
+        else {
+        parent->setRight(newRoot);}
 
+    // U
+    updateNodeHeight(node);
+    updateNodeHeight(newRoot);
+}
+template<class Key, class Value>
+void AVLTree<Key, Value>::rotateRight(AVLNode<Key, Value>* node)
+{
+    AVLNode<Key, Value>* newRoot = node->getLeft();
+    AVLNode<Key, Value>* parent = node->getParent();
+
+    node->setLeft(newRoot->getRight());
+    if (newRoot->getRight() != nullptr) {
+        newRoot->getRight()->setParent(node);
+    }
+
+    newRoot->setRight(node);
+    node->setParent(newRoot);
+
+    newRoot->setParent(parent);
+    if (parent == nullptr) {
+        this->root_ = newRoot;
+    } else if (parent->getLeft() == node) {
+        parent->setLeft(newRoot);
+    } else {
+        parent->setRight(newRoot);
+    }
+
+    // basically Update    balance  after rotation
+    updateNodeHeight(node);
+    updateNodeHeight(newRoot);
+}
 #endif
