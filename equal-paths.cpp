@@ -1,5 +1,5 @@
 #ifndef RECCHECK
-//if you want to add any #includes like <iostream> you must do them here (before the next endif)
+//if you want to add any #includes like <iostream> you must do them here (bee the next endif)
 
 #endif
 
@@ -42,7 +42,7 @@ if (!root->left   && !root->right){return true;}
   //if both left and right give answer
         return (leftlength == rightlength);
 
-        //for only left - continue down the left path
+        // only left - continue down the left path
         // to check entire tree correctly
     if (root->left) {
     return equalPaths(root->left);
