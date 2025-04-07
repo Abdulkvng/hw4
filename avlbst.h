@@ -225,7 +225,11 @@ void AVLTree<Key, Value>::remove(const Key& key)
 template<class Key, class Value>
 void AVLTree<Key, Value>::nodeSwap(AVLNode<Key,Value>* n1, AVLNode<Key,Value>* n2)
 {BinarySearchTree<Key, Value>::nodeSwap(n1, n2);
-    std::swap(n1->balance_, n2->balance_);}
+   int8_t tmp = n1->getBalance();
+n1->setBalance(n2->getBalance());
+n2->setBalance(tmp);
+    
+    }
 
 template<class Key, class Value>
 int AVLTree<Key, Value>::getNodeHeight(AVLNode<Key, Value>* node) const
